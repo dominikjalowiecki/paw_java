@@ -3,35 +3,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Credit calculator</title>
 </h:head>
 <h:body>
 
-	<h1>Credit calculator</h1>
-
-	<h:form id="form">
-  		Amount:
-  		<br /> 
-  		<h:inputText value="#{creditBB.amount}" />
-		<br />
-  		Duration:
-  		<br />
-  		<h:inputText value="#{creditBB.duration}" />
-  		<br />
-  		Interest rate:
-  		<br />
-  		<h:inputText value="#{creditBB.interestRate}" />
-		<br />
-  		<h:messages id="message" />
-  		<br />
-		<h:commandButton value="Calculate (AJAX)" action="#{creditBB.calculateAjax()}">
-			<f:ajax execute="@form" render=":form:message" />
-		</h:commandButton>
-		<br />
-		<h:commandButton value="Calculate" action="#{creditBB.calculate()}"/>
-	</h:form>
+	<p:panel header="Credit calculator" toggleSpeed="300" toggleable="true">
+		<h:form id="form">
+			<h:panelGrid columns="3" cellpadding="1" style="margin-bottom: 1rem;">
+			   <p:outputLabel for="amount" value="Amount"/>
+		       <p:inputText id="amount" value="#{creditBB.amount}" required="true" requiredMessage="Amount is required!"/>
+			   <p:message for="amount" display="icon"/>
+			   
+			   <p:outputLabel for="duration" value="Duration"/>
+		       <p:inputText id="duration" value="#{creditBB.duration}" required="true" requiredMessage="Duration is required!"/>
+	  		   <p:message for="duration" display="icon"/>
+		  		
+		  	   <p:outputLabel for="interestRate" value="Interest rate"/>
+			   <p:inputText id="interestRate" value="#{creditBB.interestRate}" required="true" requiredMessage="Interest rate is required!"/>
+			   <p:message for="interestRate" display="icon"/>
+			</h:panelGrid>
+			
+			<p:commandButton value="Calculate (AJAX)" action="#{creditBB.calculateAjax()}" update="@form" icon="pi pi-check" style="margin-right: .5rem;" />
+			<p:commandButton value="Calculate" ajax="false" action="#{creditBB.calculate()}"/>
+			
+			<p:messages id="messages" />
+		</h:form>
+	</p:panel>
 
 </h:body>
 </html>

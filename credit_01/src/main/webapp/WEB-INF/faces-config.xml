@@ -6,7 +6,7 @@
     <navigation-rule>
 	   <from-view-id>/index.xhtml</from-view-id>
 	   <navigation-case>
-	      <from-action>#{creditBB.calculate}</from-action>
+	      <from-action>#{creditBB.calculate()}</from-action>
 	      <from-outcome>success</from-outcome>
 	      <to-view-id>/result.xhtml</to-view-id>
 	      <redirect />
