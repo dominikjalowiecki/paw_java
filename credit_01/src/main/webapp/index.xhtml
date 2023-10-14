@@ -11,7 +11,7 @@
 
 	<h1>Credit calculator</h1>
 
-	<h:form>
+	<h:form id="form">
   		Amount:
   		<br /> 
   		<h:inputText value="#{creditBB.amount}" />
@@ -24,9 +24,12 @@
   		<br />
   		<h:inputText value="#{creditBB.interestRate}" />
 		<br />
-		<h:messages id="message" />
-		Result: #{creditBB.result}
-		<br /><br />
+  		<h:messages id="message" />
+  		<br />
+		<h:commandButton value="Calculate (AJAX)" action="#{creditBB.calculateAjax()}">
+			<f:ajax execute="@form" render=":form:message" />
+		</h:commandButton>
+		<br />
 		<h:commandButton value="Calculate" action="#{creditBB.calculate()}"/>
 	</h:form>
 

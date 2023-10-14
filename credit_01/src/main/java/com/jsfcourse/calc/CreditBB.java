@@ -45,21 +45,35 @@ public class CreditBB {
 	public Double getResult() {
 		return result;
 	}
-
-	public String calculate() {
+	
+	private boolean process() {		
 		try {
 			double amount = Double.parseDouble(this.amount);
 			int duration = Integer.parseInt(this.duration);
 			double interestRate = Double.parseDouble(this.interestRate);
-	
+
 			result = (amount + amount * interestRate / 100) / duration;
-	
+			
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operation ended successfully", null));
-			} catch (Exception e) {
+		} catch (Exception e) {
 			ctx.addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error during processing of parameters", null));
+			return false;
 		}
-		
+		return true;
+	}
+
+	public String calculate() {
+		if(process()) {
+			return "result";
+		}
+		return null;
+	}
+	
+	public String calculateAjax() {
+		if(process()) {
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Result: " + result, null));
+		}
 		return null;
 	}
 }
