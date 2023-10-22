@@ -9,36 +9,36 @@ import jakarta.faces.context.FacesContext;
 @Named
 @RequestScoped
 public class CreditBB {
-	private String amount;
-	private String duration;
-	private String interestRate;
+	private Integer amount;
+	private Integer duration;
+	private Double interestRate;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 	
 
-	public String getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 
-	public String getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 
-	public String getInterestRate() {
+	public Double getInterestRate() {
 		return interestRate;
 	}
 
-	public void setInterestRate(String interestRate) {
+	public void setInterestRate(Double interestRate) {
 		this.interestRate = interestRate;
 	}
 
@@ -48,10 +48,6 @@ public class CreditBB {
 	
 	private boolean process() {		
 		try {
-			double amount = Double.parseDouble(this.amount);
-			int duration = Integer.parseInt(this.duration);
-			double interestRate = Double.parseDouble(this.interestRate);
-
 			result = (amount + amount * interestRate / 100) / duration;
 			
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operation ended successfully", null));

@@ -14,15 +14,21 @@
 		<h:form id="form">
 			<h:panelGrid columns="3" cellpadding="1" style="margin-bottom: 1rem;">
 			   <p:outputLabel for="amount" value="Amount"/>
-		       <p:inputText id="amount" value="#{creditBB.amount}" required="true" requiredMessage="Amount is required!"/>
+		       <p:inputNumber id="amount" value="#{creditBB.amount}" symbol="$" symbolPosition="s" emptyValue="always" required="true" requiredMessage="Amount is required!" converterMessage="Amount has to be integer!" validatorMessage="Amount is minimum 1000$">
+		       	<f:validateLongRange minimum="1000"/>
+		       </p:inputNumber>
 			   <p:message for="amount" display="icon"/>
 			   
 			   <p:outputLabel for="duration" value="Duration"/>
-		       <p:inputText id="duration" value="#{creditBB.duration}" required="true" requiredMessage="Duration is required!"/>
+		       <p:inputNumber id="duration" value="#{creditBB.duration}" symbol=" years" symbolPosition="s" required="true" requiredMessage="Duration is required!"  converterMessage="Duration has to be integer!" validatorMessage="Duration is minimum 1 year">
+		       	<f:validateLongRange minimum="1"/>
+		       </p:inputNumber>
 	  		   <p:message for="duration" display="icon"/>
 		  		
 		  	   <p:outputLabel for="interestRate" value="Interest rate"/>
-			   <p:inputText id="interestRate" value="#{creditBB.interestRate}" required="true" requiredMessage="Interest rate is required!"/>
+			   <p:inputNumber id="interestRate" value="#{creditBB.interestRate}" symbol="%" symbolPosition="s" emptyValue="zero" required="true" requiredMessage="Interest rate is required!" converterMessage="Interest rate has to be decimal!" validatorMessage="Interest rate is minimum 1% and maximum 100%">
+			   	<f:validateDoubleRange minimum="1.00" maximum="100.00"/>
+			   </p:inputNumber>
 			   <p:message for="interestRate" display="icon"/>
 			</h:panelGrid>
 			
