@@ -1,43 +1,43 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/templates/page-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Credit calculator</title>
-</h:head>
-<h:body>
-
-	<p:panel header="Credit calculator" toggleSpeed="300" toggleable="true">
-		<h:form id="form">
-			<h:panelGrid columns="3" cellpadding="1" style="margin-bottom: 1rem;">
-			   <p:outputLabel for="amount" value="Amount"/>
-		       <p:inputNumber id="amount" value="#{creditBB.amount}" symbol="$" symbolPosition="s" emptyValue="always" required="true" requiredMessage="Amount is required!" converterMessage="Amount has to be integer!" validatorMessage="Amount is minimum 1000$">
-		       	<f:validateLongRange minimum="1000"/>
-		       </p:inputNumber>
-			   <p:message for="amount" display="icon"/>
-			   
-			   <p:outputLabel for="duration" value="Duration"/>
-		       <p:inputNumber id="duration" value="#{creditBB.duration}" symbol=" years" symbolPosition="s" required="true" requiredMessage="Duration is required!"  converterMessage="Duration has to be integer!" validatorMessage="Duration is minimum 1 year">
-		       	<f:validateLongRange minimum="1"/>
-		       </p:inputNumber>
-	  		   <p:message for="duration" display="icon"/>
-		  		
-		  	   <p:outputLabel for="interestRate" value="Interest rate"/>
-			   <p:inputNumber id="interestRate" value="#{creditBB.interestRate}" symbol="%" symbolPosition="s" emptyValue="zero" required="true" requiredMessage="Interest rate is required!" converterMessage="Interest rate has to be decimal!" validatorMessage="Interest rate is minimum 1% and maximum 100%">
-			   	<f:validateDoubleRange minimum="1.00" maximum="100.00"/>
-			   </p:inputNumber>
-			   <p:message for="interestRate" display="icon"/>
-			</h:panelGrid>
-			
-			<p:commandButton value="Calculate (AJAX)" action="#{creditBB.calculateAjax()}" update="@form" icon="pi pi-check" style="margin-right: .5rem;" />
-			<p:commandButton value="Calculate" ajax="false" action="#{creditBB.calculate()}"/>
-			
-			<p:messages id="messages" />
-		</h:form>
-	</p:panel>
-
-</h:body>
-</html>
+	
+	<ui:define name="title">Credit calculator</ui:define>
+	
+	<ui:define name="content">
+	
+		<p:panel header="Credit calculator" toggleSpeed="300" toggleable="true">
+			<h:form id="form">
+				<h:panelGrid columns="3" cellpadding="1" style="margin-bottom: 1rem;">
+				   <p:outputLabel for="amount" value="Amount"/>
+			       <p:inputNumber id="amount" value="#{creditBB.amount}" symbol="$" symbolPosition="s" emptyValue="always" required="true" requiredMessage="Amount is required!" converterMessage="Amount has to be integer!" validatorMessage="Amount is minimum 1000$">
+			       	<f:validateLongRange minimum="1000"/>
+			       </p:inputNumber>
+				   <p:message for="amount" display="icon"/>
+				   
+				   <p:outputLabel for="duration" value="Duration"/>
+			       <p:inputNumber id="duration" value="#{creditBB.duration}" symbol=" years" symbolPosition="s" required="true" requiredMessage="Duration is required!"  converterMessage="Duration has to be integer!" validatorMessage="Duration is minimum 1 year">
+			       	<f:validateLongRange minimum="1"/>
+			       </p:inputNumber>
+		  		   <p:message for="duration" display="icon"/>
+							  		
+			  	   <p:outputLabel for="interestRate" value="Interest rate"/>
+				   <p:inputNumber id="interestRate" value="#{creditBB.interestRate}" symbol="%" symbolPosition="s" emptyValue="zero" required="true" requiredMessage="Interest rate is required!" converterMessage="Interest rate has to be decimal!" validatorMessage="Interest rate is minimum 1% and maximum 100%">
+				   	<f:validateDoubleRange minimum="1.00" maximum="100.00"/>
+				   </p:inputNumber>
+				   <p:message for="interestRate" display="icon"/>
+				</h:panelGrid>
+				
+				<p:commandButton value="Calculate (AJAX)" action="#{creditBB.calculateAjax()}" update="@form" icon="pi pi-check" style="margin-right: .5rem;" />
+				<p:commandButton value="Calculate" ajax="false" action="#{creditBB.calculate()}"/>
+				
+				<p:messages id="messages" />
+			</h:form>
+		</p:panel>
+	
+	</ui:define>
+	
+</ui:composition>

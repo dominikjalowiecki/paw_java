@@ -1,0 +1,14 @@
+body {
+	background-image: url('../image/paisley.webp.jsf?ln=template');
+	background-repeat: repeat;
+}
+
+.ui-panel {
+	margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 992px) {
+	html {
+		font-size: .85rem;
+	}
+}
